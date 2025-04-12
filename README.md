@@ -1,5 +1,8 @@
-# Telegram MCP Server
+# Telegram Bot MCP Server
 
-What is this and how to use it
+A Telegram Bot MCP server, help you manage your telegram bot with using any of the MCP clients (curser, Claud Desktop, etc)
 
 ## Features
+
+- Send message using a chat id (what is telegram chat id)
+-
