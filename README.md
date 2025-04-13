@@ -208,6 +208,8 @@ Add this to your MCP client configuration:
 
 Feel free to open issues or contribute to the project. For Telegram-specific help, refer to the [Telegram Bot API documentation](https://core.telegram.org/bots/api).
 
+Buy me a Coffee :) https://buymeacoffee.com/delkhoshsiv
+
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
