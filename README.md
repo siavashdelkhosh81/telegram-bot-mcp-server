@@ -162,7 +162,7 @@ cd telegram-bot-mcp-server
    /newbot
    ```
 3. Follow the prompts to name your bot and get your **API token**.
-4. Save the token; you'll need it in the next step.
+4. Save the token.
 
 ---
 
@@ -182,7 +182,7 @@ yarn build
 
 ---
 
-### 3. Configure Your MCP Client
+### 4. Configure Your MCP Client
 
 Add this to your MCP client configuration:
 
@@ -201,12 +201,6 @@ Add this to your MCP client configuration:
 ```
 
 > 🔁 Replace `/ABSOLUTE/PATH/TO/PARENT/FOLDER/.build/index.js` with the real path to your compiled project entry point.
-
----
-
-### 4. Build and Run
-
-Make sure your TypeScript is built, then start your MCP client. The Telegram bot MCP server will connect and expose all the tools defined above.
 
 ---
 
