@@ -1,18 +1,24 @@
 {
-  "name": "telegram_mcp_server",
+  "name": "telegram-bot-mcp-server",
   "version": "1.0.0",
-  "main": "index.js",
-  "license": "MIT",
-  "scripts": {
-    "build": "npx tsc"
+  "description": "A Model Context Protocol (MCP) server for Telegram Bot API integration",
+  "main": ".build/index.js",
+  "bin": {
+    "telegram-bot-mcp-server": ".build/cli.js"
   },
-  "devDependencies": {
-    "@types/node": "^22.14.1",
-    "typescript": "^5.8.3"
+  "scripts": {
+    "build": "npx tsc",
+    "start": "node .build/index.js",
+    "prepublishOnly": "npm run build"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.9.0",
     "telegraf": "^4.16.3",
     "zod": "^3.24.2"
-  }
+  },
+  "devDependencies": {
+    "@types/node": "^22.14.1",
+    "typescript": "^5.8.3"
+  },
+  "license": "MIT"
 }
