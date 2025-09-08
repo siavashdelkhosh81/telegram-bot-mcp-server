@@ -1,9 +1,14 @@
+#!/usr/bin/env node
+
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 import { Telegraf } from "telegraf";
 import { z } from "zod";
-import { TelegramCommandSchema } from "./types";
-import { BotCommand } from "telegraf/types";
+
+export const TelegramCommandSchema = z.object({
+    command: z.string().min(1, "Command is required"),
+    description: z.string().min(1, "Description is required"),
+});
 
 const TELEGRAM_BOT_API_TOKEN = process.env.TELEGRAM_BOT_API_TOKEN;
 
