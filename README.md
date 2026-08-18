@@ -8,11 +8,15 @@ A powerful **Model Context Protocol (MCP) server** for seamless Telegram Bot API
 
 ## ✨ Key Features
 
+- **📝 45 Tools, Rich API Coverage**: Messaging, media, polls, chat administration, invite links, and bot configuration
 - **🔄 Intelligent Message Splitting**: Automatically handles Telegram's 4096 character limit while preserving word boundaries and formatting
+- **🖼️ Full Media Support**: Photos, documents, videos, audio, voice messages, animations, and stickers by file_id or URL
+- **🎲 Interactive Content**: Polls, quizzes, dice, locations, contacts, and chat actions (typing indicators)
+- **✏️ Message Lifecycle**: Edit, delete, forward, copy, and pin messages
+- **👮 Group Administration**: Ban/unban, restrict/mute, promote admins, and manage invite links
 - **🛡️ Comprehensive Error Handling**: Detailed error reporting with context, error codes, and debugging information
 - **📦 NPX Support**: Run directly with `npx telegram-bot-mcp-server` - no installation required
 - **🔧 Easy Integration**: Simple MCP client configuration for AI assistants
-- **📝 Rich API Coverage**: Complete Telegram Bot API functionality including messaging, user management, and bot configuration
 
 ## 🚀 Quick Start
 
@@ -92,170 +96,106 @@ Add this configuration to your MCP client (Claude Desktop, etc.):
 }
 ```
 
-## 🛠️ Available Tools
+## 🛠️ Available Tools (45)
 
-### 📨 Messaging Tools
+### 📨 Messaging
 
-#### `send-message`
-Send text messages with automatic splitting for long content.
-- **Features**: Intelligent message splitting, word boundary preservation
-- **Input**: `chatId` (string), `text` (string)
-- **Auto-splitting**: Messages over 4096 characters are automatically split
+| Tool | Description | Inputs |
+|------|-------------|--------|
+| `send-message` | Send a text message. Messages over 4096 characters are automatically split while preserving word boundaries | `chatId`, `text` |
+| `edit-message-text` | Edit the text of a message previously sent by the bot | `chatId`, `messageId`, `text` |
+| `delete-message` | Delete a message from a chat | `chatId`, `messageId` |
+| `forward-message` | Forward a message from one chat to another (keeps a link to the original) | `chatId`, `fromChatId`, `messageId` |
+| `copy-message` | Copy a message to another chat without a link to the original | `chatId`, `fromChatId`, `messageId` |
+| `send-chat-action` | Show a status indicator like "typing…" or "sending photo…" | `chatId`, `action` |
 
-#### `send-photo`
-Send photos with captions, handling long captions automatically.
-- **Features**: Long caption splitting, multiple message support
-- **Input**: `chatId` (string), `media` (string), `text` (optional string)
+### 🖼️ Media
 
----
+| Tool | Description | Inputs |
+|------|-------------|--------|
+| `send-photo` | Send a photo with an optional caption (long captions are split automatically) | `chatId`, `media`, `text?` |
+| `send-document` | Send a document/file (PDF, ZIP, etc., up to 50 MB) | `chatId`, `media`, `caption?` |
+| `send-video` | Send an MPEG4 video | `chatId`, `media`, `caption?` |
+| `send-audio` | Send an audio file for the music player (.MP3/.M4A) | `chatId`, `media`, `caption?` |
+| `send-voice` | Send a playable voice message (.OGG/OPUS, .MP3, .M4A) | `chatId`, `media`, `caption?` |
+| `send-animation` | Send an animation (GIF or soundless MPEG4) | `chatId`, `media`, `caption?` |
+| `send-sticker` | Send a static, animated, or video sticker | `chatId`, `media` |
+| `get-file` | Get file info and a direct HTTPS download link for any file_id | `fileId` |
 
-### 🖼️ `send-photo`
+For all media tools, `media` accepts a Telegram `file_id` (recommended) or an HTTP URL.
 
-Send a photo with an optional caption.
+### 🎲 Interactive Content
 
-- **Input**:
-  - `chatId`: Target chat ID or username
-  - `media`: File ID, URL, or uploaded file
-  - `text` (optional): Caption for the photo
+| Tool | Description | Inputs |
+|------|-------------|--------|
+| `send-poll` | Send a native poll or quiz (anonymous mode, multiple answers, quiz mode with a correct answer) | `chatId`, `question`, `options`, `isAnonymous?`, `allowsMultipleAnswers?`, `type?`, `correctOptionId?` |
+| `send-dice` | Send an animated random-value emoji (🎲 🎯 🏀 ⚽ 🎳 🎰) | `chatId`, `emoji?` |
+| `send-location` | Send a point on the map | `chatId`, `latitude`, `longitude` |
+| `send-contact` | Send a phone contact | `chatId`, `phoneNumber`, `firstName`, `lastName?` |
 
----
+### 👥 Chat & Member Management
 
-### 🔨 `kick-chat-member`
+| Tool | Description | Inputs |
+|------|-------------|--------|
+| `get-chat` | Fetch full chat metadata and details | `chatId` |
+| `get-chat-member` | Get detailed info about a chat member | `chatId`, `userId` |
+| `get-chat-member-count` | Get the total number of members in a chat | `chatId` |
+| `get-chat-administrators` | List all chat administrators with their rights | `chatId` |
+| `kick-chat-member` | Ban a user from a group, supergroup, or channel | `chatId`, `userId` |
+| `un-ban-chat-member` | Unban a previously banned user | `chatId`, `userId` |
+| `restrict-chat-member` | Mute or limit what a user can send in a supergroup | `chatId`, `userId`, permission flags, `untilDate?` |
+| `promote-chat-member` | Promote a user to administrator (or demote them) | `chatId`, `userId`, admin right flags |
+| `get-user-profile-photos` | Get a user's profile pictures | `userId`, `offset?`, `limit?` |
+| `leave-chat` | Make the bot leave a group, supergroup, or channel | `chatId` |
 
-Ban a user from a group, supergroup, or channel.
+### 🔧 Chat Settings
 
-- **Input**:
-  - `chatId`: Target chat
-  - `userId`: User to ban
+| Tool | Description | Inputs |
+|------|-------------|--------|
+| `set-chat-title` | Change the title of a group or channel | `chatId`, `title` |
+| `set-chat-description` | Change the description of a group or channel | `chatId`, `description` |
+| `pin-chat-message` | Pin a message (optionally silently) | `chatId`, `messageId`, `disableNotification?` |
+| `unpin-chat-message` | Unpin a message (or the most recent pin) | `chatId`, `messageId?` |
+| `unpin-all-chat-messages` | Unpin all pinned messages at once | `chatId` |
 
----
+### 🔗 Invite Links
 
-### ♻️ `un-ban-chat-member`
+| Tool | Description | Inputs |
+|------|-------------|--------|
+| `create-chat-invite-link` | Create an additional invite link (with optional name, expiry, member limit) | `chatId`, `name?`, `expireDate?`, `memberLimit?` |
+| `revoke-chat-invite-link` | Revoke an invite link created by the bot | `chatId`, `inviteLink` |
+| `export-chat-invite-link` | Generate a new primary invite link (revokes the old one) | `chatId` |
 
-Unban a previously banned user from a chat.
+### 🤖 Bot Configuration
 
-- **Input**:
-  - `chatId`: Target chat
-  - `userId`: User to unban
-
----
-
-### 🧾 `get-chat`
-
-Fetch full chat metadata and details.
-
-- **Input**:
-  - `chatId`: Target chat
-
----
-
-### 👥 `get-chat-member-count`
-
-Get the total number of members in a group or channel.
-
-- **Input**:
-  - `chatId`: Target chat
-
----
-
-### 🔍 `get-chat-member`
-
-Get detailed info about a specific member in a group or channel.
-
-- **Input**:
-  - `chatId`: Target chat
-  - `userId`: Target user
-
----
-
-### ✏️ `set-my-short-description`
-
-Update your bot's short description (shown in the profile and shares).
-
-- **Input**:
-  - `short_description`: New short description (max 120 chars)
-
----
-
-### 📄 `get-my-short-description`
-
-Fetch the current short description of the bot.
-
----
-
-### 📝 `set-my-commands`
-
-Set the list of commands that appear in the Telegram UI.
-
-- **Input**:
-  - `commands`: Array of `{ command, description }`
-
----
-
-### 📋 `get-my-commands`
-
-Get the current list of commands configured for the bot.
-
----
-
-### 🧑‍💻 `set-my-name`
-
-Update the name of the bot.
-
-- **Input**:
-  - `name`: New bot name
-
----
-
-### 🙋 `get-my-name`
-
-Retrieve the current name of the bot.
-
----
-
-### 📘 `set-my-description`
-
-Update the full description of the bot (shown in empty chats).
-
-- **Input**:
-  - `description`: New bot description (max 512 chars)
-
-### 👥 User Management Tools
-
-#### `kick-chat-member` / `un-ban-chat-member`
-Manage chat members with detailed error reporting.
-- **Features**: Ban/unban users, comprehensive error handling
-- **Input**: `chatId` (string), `userId` (number)
-
-#### `get-chat` / `get-chat-member` / `get-chat-member-count`
-Retrieve detailed chat and member information.
-- **Features**: Complete chat data, member details, member counts
-- **Input**: `chatId` (string), `userId` (number, for member info)
-
-### 🤖 Bot Configuration Tools
-
-#### `get-me`
-Test bot authentication and retrieve bot information.
-- **Features**: Authentication validation, bot details
-- **Input**: None required
-
-#### `set-my-name` / `get-my-name`
-Configure and retrieve bot name.
-- **Input**: `name` (string, 0-64 characters)
-
-#### `set-my-description` / `get-my-description`
-Configure and retrieve bot description.
-- **Input**: `description` (string, 0-512 characters)
-
-#### `set-my-short-description` / `get-my-short-description`
-Configure and retrieve bot short description.
-- **Input**: `short_description` (string, 0-120 characters)
-
-#### `set-my-commands` / `get-my-commands`
-Configure and retrieve bot commands.
-- **Input**: `commands` (array of command objects)
+| Tool | Description | Inputs |
+|------|-------------|--------|
+| `get-me` | Test the bot's auth token and get bot info | — |
+| `set-my-name` / `get-my-name` | Configure and retrieve the bot's name | `name` (0-64 chars) |
+| `set-my-description` / `get-my-description` | Configure and retrieve the bot's description (shown in empty chats) | `description` (0-512 chars) |
+| `set-my-short-description` / `get-my-short-description` | Configure and retrieve the bot's short description (profile page) | `short_description` (0-120 chars) |
+| `set-my-commands` / `get-my-commands` | Configure and retrieve the bot's command menu | `commands` array of `{ command, description }` |
 
 ## 🆕 New Features
+
+### Rich Media Support
+- **Documents, Video, Audio, Voice, Animations, Stickers**: Send any kind of media by `file_id` or URL
+- **File Downloads**: Resolve any `file_id` to a direct HTTPS download link with `get-file`
+
+### Interactive Content
+- **Polls & Quizzes**: Native polls with anonymous mode, multiple answers, and quiz mode with a correct answer
+- **Dice, Locations, Contacts**: Fun animated emoji, map points, and phone contacts
+- **Chat Actions**: Show "typing…" and other status indicators while preparing a response
+
+### Full Message Lifecycle
+- **Edit & Delete**: Update or remove messages the bot has sent
+- **Forward & Copy**: Move content between chats, with or without attribution
+- **Pin Management**: Pin, unpin, and bulk-unpin messages
+
+### Group Administration
+- **Moderation**: Ban, unban, mute/restrict, and promote members
+- **Chat Settings**: Update titles and descriptions, list administrators
+- **Invite Links**: Create, revoke, and rotate invite links with expiry and member limits
 
 ### Intelligent Message Splitting
 - **Automatic Detection**: Detects when messages exceed 4096 characters

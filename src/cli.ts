@@ -24,7 +24,7 @@ const showVersion = args.includes('--version') || args.includes('-v');
 // Package information
 const packageInfo = {
   name: "telegram-bot-mcp-server",
-  version: "1.0.0",
+  version: "1.1.0",
   description: "A Model Context Protocol (MCP) server for Telegram Bot API integration"
 };
 
@@ -74,9 +74,12 @@ Add this to your MCP client configuration:
 
 FEATURES:
 - Send messages with automatic splitting for long content
-- Send photos with captions
-- Manage chat members (ban/unban)
-- Get chat and member information
+- Send photos, documents, videos, audio, voice messages, animations, and stickers
+- Send polls, quizzes, dice, locations, and contacts
+- Edit, delete, forward, copy, and pin messages
+- Manage chat members (ban/unban, restrict, promote)
+- Manage chat settings and invite links
+- Get chat, member, and file information
 - Configure bot settings (name, description, commands)
 - Comprehensive error handling with detailed feedback
 

@@ -13,7 +13,7 @@ if (!TELEGRAM_BOT_API_TOKEN) {
 
 const server = new McpServer({
   name: "telegram_bot",
-  version: "1.0.0",
+  version: "1.1.0",
   capabilities: {
     resources: {},
     tools: {},
