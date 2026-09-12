@@ -3,16 +3,10 @@
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 import { Telegraf } from "telegraf";
-import { z } from "zod";
-import { TelegramCommandSchema } from "./types";
-import { BotCommand } from "telegraf/types";
 import {
-  sendLongMessage,
-  sendPhotoWithLongCaption,
   createTelegramError,
   formatErrorForMCP,
-  logError,
-  handleToolError
+  logError
 } from "./utils";
 import { registerAllTools } from "./tools";
 
