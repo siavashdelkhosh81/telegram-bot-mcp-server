@@ -8,7 +8,7 @@ A powerful **Model Context Protocol (MCP) server** for seamless Telegram Bot API
 
 ## ✨ Key Features
 
-- **📝 45 Tools, Rich API Coverage**: Messaging, media, polls, chat administration, invite links, and bot configuration
+- **📝 44 Tools, Rich API Coverage**: Messaging, media, polls, chat administration, invite links, and bot configuration
 - **🔄 Intelligent Message Splitting**: Automatically handles Telegram's 4096 character limit while preserving word boundaries and formatting
 - **🖼️ Full Media Support**: Photos, documents, videos, audio, voice messages, animations, and stickers by file_id or URL
 - **🎲 Interactive Content**: Polls, quizzes, dice, locations, contacts, and chat actions (typing indicators)
@@ -96,7 +96,7 @@ Add this configuration to your MCP client (Claude Desktop, etc.):
 }
 ```
 
-## 🛠️ Available Tools (45)
+## 🛠️ Available Tools (44)
 
 ### 📨 Messaging
 
