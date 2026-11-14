@@ -28,7 +28,7 @@ registerAllTools(server, bot);
 async function main() {
   const transport = new StdioServerTransport();
   await server.connect(transport);
-  console.log("Telegram bot MCP Server running on stdio");
+  console.error("Telegram bot MCP Server running on stdio");
 }
 
 main().catch((error) => {
