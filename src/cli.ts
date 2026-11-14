@@ -135,7 +135,7 @@ async function main() {
   try {
     const transport = new StdioServerTransport();
     await server.connect(transport);
-    console.log("Telegram bot MCP Server running on stdio");
+    console.error("Telegram bot MCP Server running on stdio");
   } catch (error) {
     const telegramError = createTelegramError(error, 'Starting MCP server');
     logError(telegramError, 'main');

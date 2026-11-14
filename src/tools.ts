@@ -325,7 +325,7 @@ export function registerAllTools(server: McpServer, bot: Telegraf) {
           content: [
             {
               type: "text",
-              text: "Successfully update short description",
+              text: "Successfully updated short description",
             },
           ],
         };
