@@ -188,7 +188,7 @@ export async function sendPhotoWithLongCaption(
  * Creates a standardized error object with detailed information
  */
 export function createTelegramError(error: any, context?: string): TelegramError {
-  let telegramError: TelegramError = {
+  const telegramError: TelegramError = {
     description: 'Unknown error occurred',
     context: context || 'Telegram API operation',
     originalError: error

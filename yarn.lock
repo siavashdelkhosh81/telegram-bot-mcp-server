@@ -23,10 +23,10 @@
   resolved "https://registry.yarnpkg.com/@telegraf/types/-/types-7.1.0.tgz#d8bd9b2f5070b4de46971416e890338cd89fc23d"
   integrity sha512-kGevOIbpMcIlCDeorKGpwZmdH7kHbqlk/Yj6dEpJMKEQw5lk0KVQY0OLXaCswy8GqlIVLd5625OB+rAntP9xVw==
 
-"@types/node@^22.14.1":
-  version "22.20.5"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-22.20.5.tgz#afa7bde6da81b8b83ea4e2f020487e9b148c11fd"
-  integrity sha512-U2+DNr+wSjpsTS/wZGYHq7GcwfuSmKiKvoPvK22zwTlRhU91yOniN4qRR5KhIjvif7ysw/dz/hKmfDH0Ris4aA==
+"@types/node@^22.20.6":
+  version "22.20.6"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-22.20.6.tgz#9fcc4ce808b308bda410ae741bb7ff99b76f5477"
+  integrity sha512-vDsVXyIC4vhuGfe+eMMqJ5VP2BMqeWcbvMIoHIeE0nbY6qyrJSnxBpw2zIL7/tv55/Zf7lzKbdlq+lq+wt5N5w==
   dependencies:
     undici-types "~6.21.0"
 
